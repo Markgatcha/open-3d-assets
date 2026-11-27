@@ -4,8 +4,7 @@ Free 3D models for Roblox, game development and anything else.
 **MIT licensed**: use, modify and sell things made with them, commercially or not.
 No sign-up, no attribution beyond keeping the license notice.
 
-**Browse and preview:** the gallery on this repo's GitHub Pages site
-(`https://<your-username>.github.io/open-3d-assets/`).
+**Browse and preview:** [markgatcha.github.io/open-3d-assets](https://markgatcha.github.io/open-3d-assets/)
 
 ## Quality tiers
 

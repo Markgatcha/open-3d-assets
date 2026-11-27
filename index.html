@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open 3D Assets: free MIT-licensed 3D models</title>
+  <meta name="description" content="Free 3D models for Roblox, game dev and general use. MIT licensed, commercial use allowed.">
+  <link rel="stylesheet" href="site/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+        "@sparkjsdev/spark": "https://cdn.jsdelivr.net/npm/@sparkjsdev/spark@2.4.0/dist/spark.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.4.0/dist/model-viewer.min.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>Open 3D Assets</h1>
+      <p class="lede">Free 3D models for Roblox, game dev and everything else.
+        <a href="LICENSE">MIT licensed</a>: use them anywhere, commercially too, no sign-up.</p>
+    </div>
+    <a class="repo-link" id="repo-link" href="#">View on GitHub</a>
+  </header>
+
+  <section class="filters" aria-label="Filters">
+    <input id="q" type="search" placeholder="Search models" aria-label="Search models">
+    <select id="category" aria-label="Category"><option value="">All categories</option></select>
+    <select id="tier" aria-label="Quality tier">
+      <option value="">All tiers</option>
+      <option value="roblox">Roblox (≤20k tris, ≤1024px)</option>
+      <option value="game">Game (≤100k tris, ≤2048px)</option>
+      <option value="hero">Hero (high detail)</option>
+      <option value="splat">Gaussian splat</option>
+    </select>
+    <span id="count" class="count" aria-live="polite"></span>
+  </section>
+
+  <main id="grid" class="grid"></main>
+  <p id="empty" class="empty" hidden>No models yet. The first batch is on its way.</p>
+
+  <dialog id="viewer" aria-labelledby="v-name">
+    <div class="viewer-head">
+      <h2 id="v-name"></h2>
+      <button id="v-close" class="ghost" aria-label="Close">✕</button>
+    </div>
+    <div id="v-stage" class="stage"></div>
+    <div class="viewer-foot">
+      <p id="v-meta" class="meta"></p>
+      <div class="actions">
+        <button id="v-flip" class="ghost" hidden>Flip splat</button>
+        <a id="v-download" class="button" download>Download</a>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="foot">
+    Every model is made from AI-generated source images with commercially licensed open models.
+    No real people, no copyrighted characters. See the <a href="ASSET_POLICY.md">asset policy</a>.
+  </footer>
+
+  <script type="module" src="site/app.js"></script>
+</body>
+</html>

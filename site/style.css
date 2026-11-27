@@ -1,0 +1,54 @@
+:root {
+  --bg: #f6f5f2;
+  --panel: #ffffff;
+  --ink: #1d1d1b;
+  --muted: #6b6a65;
+  --line: #e2e0da;
+  --accent: #2f5bd3;
+  --radius: 10px;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #151514; --panel: #1f1f1d; --ink: #ecebe7; --muted: #9c9a94; --line: #33322f; --accent: #7d9cf0; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+a { color: var(--accent); }
+
+.top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding: 32px clamp(16px, 4vw, 48px) 16px; }
+.top h1 { margin: 0 0 4px; font-size: 28px; letter-spacing: -0.01em; }
+.lede { margin: 0; color: var(--muted); max-width: 60ch; }
+.repo-link { white-space: nowrap; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 0 clamp(16px, 4vw, 48px) 16px; }
+.filters input, .filters select { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--ink); }
+.filters input { flex: 1 1 220px; }
+.count { color: var(--muted); margin-left: auto; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding: 0 clamp(16px, 4vw, 48px) 32px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; cursor: pointer; text-align: left; padding: 0; font: inherit; color: inherit; }
+.card:hover, .card:focus-visible { border-color: var(--accent); outline: none; }
+.thumb { aspect-ratio: 1; background: color-mix(in srgb, var(--line) 50%, var(--panel)); display: grid; place-items: center; color: var(--muted); font-size: 13px; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card-body { padding: 10px 12px 12px; }
+.card-body h3 { margin: 0 0 6px; font-size: 15px; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.chip { font-size: 12px; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); }
+.chip.tier-roblox { border-color: #d4473a; color: #d4473a; }
+.chip.tier-splat { border-color: #8a4fd1; color: #8a4fd1; }
+
+.empty { text-align: center; color: var(--muted); padding: 48px 16px; }
+
+dialog { width: min(960px, 94vw); padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); color: var(--ink); }
+dialog::backdrop { background: rgb(0 0 0 / 0.55); }
+.viewer-head, .viewer-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; }
+.viewer-head h2 { margin: 0; font-size: 18px; }
+.stage { height: min(62vh, 560px); background: #2a2a28; position: relative; }
+.stage model-viewer, .stage canvas { width: 100%; height: 100%; display: block; }
+.stage-status { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: #c9c7c1; padding: 16px; text-align: center; }
+.meta { margin: 0; color: var(--muted); font-size: 13px; }
+.actions { display: flex; gap: 8px; }
+.button, button { font: inherit; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--accent); background: var(--accent); color: #fff; text-decoration: none; cursor: pointer; }
+.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+
+.foot { color: var(--muted); font-size: 13px; padding: 16px clamp(16px, 4vw, 48px) 40px; border-top: 1px solid var(--line); }

@@ -1,0 +1,149 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "input.png"
+    },
+    "_meta": {
+      "title": "Input image"
+    }
+  },
+  "2": {
+    "class_type": "LoadBackgroundRemovalModel",
+    "inputs": {
+      "bg_removal_name": "birefnet.safetensors"
+    }
+  },
+  "3": {
+    "class_type": "RemoveBackground",
+    "inputs": {
+      "bg_removal_model": [
+        "2",
+        0
+      ],
+      "image": [
+        "1",
+        0
+      ]
+    }
+  },
+  "4": {
+    "class_type": "TripoSplatPreprocessImage",
+    "inputs": {
+      "image": [
+        "1",
+        0
+      ],
+      "mask": [
+        "3",
+        0
+      ],
+      "erode_radius": 1,
+      "size": 1024
+    }
+  },
+  "5": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "idol_fp16.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "6": {
+    "class_type": "CLIPVisionLoader",
+    "inputs": {
+      "clip_name": "dino_v3_vit_h_bf16.safetensors"
+    }
+  },
+  "7": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    }
+  },
+  "8": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "idol_decoder_fp16.safetensors"
+    }
+  },
+  "9": {
+    "class_type": "TripoSplatConditioning",
+    "inputs": {
+      "clip_vision": [
+        "6",
+        0
+      ],
+      "vae": [
+        "7",
+        0
+      ],
+      "image": [
+        "4",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "5",
+        0
+      ],
+      "positive": [
+        "9",
+        0
+      ],
+      "negative": [
+        "9",
+        1
+      ],
+      "latent_image": [
+        "9",
+        2
+      ],
+      "seed": 46,
+      "steps": 20,
+      "cfg": 3.0,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "simple",
+      "denoise": 1.0
+    }
+  },
+  "11": {
+    "class_type": "VAEDecodeTripoSplat",
+    "inputs": {
+      "samples": [
+        "10",
+        0
+      ],
+      "vae": [
+        "8",
+        0
+      ],
+      "num_gaussians": 262144,
+      "seed": 46
+    }
+  },
+  "12": {
+    "class_type": "SplatToFile3D",
+    "inputs": {
+      "splat": [
+        "11",
+        0
+      ],
+      "format": "spz"
+    }
+  },
+  "13": {
+    "class_type": "SaveGLB",
+    "inputs": {
+      "mesh": [
+        "12",
+        0
+      ],
+      "filename_prefix": "3d/idol_splat"
+    }
+  }
+}
